@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>South African Wildlife Conservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f3e6;
+            color: #333;
+        }
+        header {
+            background-color: #e77025;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        .info-box {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        #wildlife-facts {
+            display: none;
+            background-color: #f0f8ea;
+            padding: 15px;
+            border-left: 4px solid #4a7c59;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4a7c59;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-top: 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #3a6a47;
+        }
+        .error {
+            color: #d9534f;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .interactive-section button {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+        #animal-info img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>South African Wildlife Conservation</h1>
+    </header>
+    
+    <main>
+        <section class="info-box">
+            <h2>Witness South Africa's amazing Wildlife</h2>
+            <p>South Africa is home to diverse ecosystems and amazing wildlife. From the Big Five to countless bird species, the country offers some of the most remarkable wildlife viewing opportunities on the planet.</p>
+            <button id="show-facts">Show Wildlife Facts</button>
+            <div id="wildlife-facts">
+                <h3>Amazing Facts About South African Wildlife:</h3>
+                <ul>
+                    <li>South Africa is home to more than 300 mammal species</li>
+                    <li>The country contains nearly 10% of all known bird species on Earth</li>
+                    <li>Kruger National Park is one of Africa's largest game reserves</li>
+                    <li>South Africa has implemented innovative conservation strategies to protect endangered species</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="interactive-section info-box">
+            <h2>Learn About Wildlife</h2>
+            <p>Click on an animal to learn more about it:</p>
+            <div>
+                <button id="lion-btn">Lion</button>
+                <button id="elephant-btn">Elephant</button>
+                <button id="rhino-btn">Rhino</button>
+            </div>
+            <div id="animal-info"></div>
+        </section>
+
+        <section class="info-box">
+            <h2>Join Our Conservation Efforts</h2>
+            <p>Fill out this form to receive information about how you can contribute to wildlife conservation in South Africa.</p>
+            
+            <form id="conservation-form">
+                <div>
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name">
+                    <div id="name-error" class="error"></div>
+                </div>
+                
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                    <div id="email-error" class="error"></div>
+                </div>
+                
+                <div>
+                    <label for="interest">Area of Interest:</label>
+                    <select id="interest" name="interest">
+                        <option value="">-- Select an option --</option>
+                        <option value="big-five">Big Five Conservation</option>
+                        <option value="marine">Marine Conservation</option>
+                        <option value="birds">Bird Conservation</option>
+                        <option value="habitat">Habitat Restoration</option>
+                    </select>
+                    <div id="interest-error" class="error"></div>
+                </div>
+                
+                <div>
+                    <label for="message">Message (Optional):</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+                
+                <button type="submit">Submit</button>
+            </form>
+            <div id="form-success" class="hidden">
+                <p>Thank you for your interest in South African wildlife conservation! We'll be in touch soon.</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // 1. Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show/Hide Wildlife Facts
+            const factsButton = document.getElementById('show-facts');
+            const factsDiv = document.getElementById('wildlife-facts');
+            
+            factsButton.addEventListener('click', function() {
+                if (factsDiv.style.display === 'block') {
+                    factsDiv.style.display = 'none';
+                    factsButton.textContent = 'Show Wildlife Facts';
+                } else {
+                    factsDiv.style.display = 'block';
+                    factsButton.textContent = 'Hide Wildlife Facts';
+                }
+            });
+            
+            // Interactive Animal Information
+            const animalInfo = document.getElementById('animal-info');
+            
+            document.getElementById('lion-btn').addEventListener('click', function() {
+                animalInfo.innerHTML = `
+                    <h3>African Lion</h3>
+                    <p>The lion is one of Africa's most iconic predators. South Africa is home to approximately 2,000 wild lions, mainly in national parks and reserves.</p>
+                    <p>Conservation Status: Vulnerable</p>
+                    <p>Lions face threats from habitat loss, human-wildlife conflict, and poaching.</p>
+                `;
+            });
+            
+            document.getElementById('elephant-btn').addEventListener('click', function() {
+                animalInfo.innerHTML = `
+                    <h3>African Elephant</h3>
+                    <p>The African elephant is the world's largest land mammal. South Africa has made significant strides in elephant conservation.</p>
+                    <p>Conservation Status: Vulnerable</p>
+                    <p>Major threats include poaching for ivory and habitat fragmentation.</p>
+                `;
+            });
+            
+            document.getElementById('rhino-btn').addEventListener('click', function() {
+                animalInfo.innerHTML = `
+                    <h3>White & Black Rhino</h3>
+                    <p>South Africa is home to the majority of the world's rhinos, with intensive conservation efforts aimed at protecting them.</p>
+                    <p>Conservation Status: Near Threatened (White) / Critically Endangered (Black)</p>
+                    <p>Poaching for rhino horn remains the greatest threat to their survival.</p>
+                `;
+            });
+            
+            // 2. Form Validation
+            const form = document.getElementById('conservation-form');
+            
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                let isValid = true;
+                
+                // Validate name
+                const name = document.getElementById('name').value.trim();
+                if (name === '') {
+                    document.getElementById('name-error').textContent = 'Please enter your name';
+                    isValid = false;
+                } else {
+                    document.getElementById('name-error').textContent = '';
+                }
+                
+                // Validate email
+                const email = document.getElementById('email').value.trim();
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (email === '') {
+                    document.getElementById('email-error').textContent = 'Please enter your email';
+                    isValid = false;
+                } else if (!emailPattern.test(email)) {
+                    document.getElementById('email-error').textContent = 'Please enter a valid email address';
+                    isValid = false;
+                } else {
+                    document.getElementById('email-error').textContent = '';
+                }
+                
+                // Validate interest
+                const interest = document.getElementById('interest').value;
+                if (interest === '') {
+                    document.getElementById('interest-error').textContent = 'Please select an area of interest';
+                    isValid = false;
+                } else {
+                    document.getElementById('interest-error').textContent = '';
+                }
+                
+                // If form is valid, show success message
+                if (isValid) {
+                    form.style.display = 'none';
+                    document.getElementById('form-success').classList.remove('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
